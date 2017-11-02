@@ -1,0 +1,55 @@
+<%= form_with(model: widget, local: true) do |form| %>
+  <% if widget.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(widget.errors.count, "error") %> prohibited this widget from being saved:</h2>
+
+      <ul>
+      <% widget.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  </h1>Change Tracking Status:</h1>
+
+  <div class="field">
+    <%= form.label :status %>
+    <%= form.select :status, ['ordered', 'in transit', 'delivered', 'problem with delivery'], id: :widget_status %>
+  </div>
+
+  </br>
+
+  <div class="field">
+    <%= form.label :email %>
+    <%= form.text_field :email, id: :widget_email %>
+  </div>
+
+  <div class="field">
+    <%= form.label :quantity %>
+    <%= form.number_field :quantity, id: :widget_quantity %>
+  </div>
+
+  <div class="field">
+    <%= form.label :color %>
+    <%= form.select :color, ['red', 'blue', 'yellow'], id: :widget_color %>
+  </div>
+
+  </br>
+
+  <div class="field">
+    <%= form.label "Needed By" %>(Please allow for a least a week before delivery is made)</br>
+    <%= form.date_field :due_by, min: 7.days.from_now, id: :widget_due_by %>
+  </div>
+
+  </br>
+
+  <div class="field">
+    <%= form.label "Widget Type" %>(Recommended: Widget Xtreme)</br>
+    <%= form.select :w_type, ['Widget', 'Widget Pro', 'Widget Xtreme'], id: :widget_w_type %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "Confirm Changes" %>
+  </div>
+<% end %>

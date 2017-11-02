@@ -26,10 +26,17 @@ Rails.application.configure do
     config.cache_store = :null_store
   end
 
-  # Don't care if the mailer can't send.
+  # Attempting to send email from dev mode
   config.action_mailer.raise_delivery_errors = true
-  config.action_mailer.delivery_method = 'smtp'
+  config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
+  config.action_mailer.smtp_settings = {
+    :address => "smtp.yahoo.com",
+    :port => 587,
+    :user_name => "rayzortestor",
+    :password => "Visiblepass",
+    :authentication => :plain,
+    :enable_starttls_auto => true}
 
   config.action_mailer.perform_caching = false
 

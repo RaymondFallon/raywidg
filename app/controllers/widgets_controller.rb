@@ -1,5 +1,6 @@
 class WidgetsController < ApplicationController
   before_action :set_widget, only: [:show, :edit, :update, :destroy]
+  before_action :check_logged_in, only: [:edit, :update, :destroy]
 
   # GET /widgets
   # GET /widgets.json
@@ -28,7 +29,7 @@ class WidgetsController < ApplicationController
 
     respond_to do |format|
       if @widget.save
-        ConfirmMailer.conf_email(@widget).deliver_now
+        ConfirmMailer.conf_email(@widget).deliver_later
 
         format.html { redirect_to @widget, notice: 'Widget was successfully created.' }
         format.json { render :show, status: :created, location: @widget }
@@ -67,6 +68,13 @@ class WidgetsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_widget
       @widget = Widget.find(params[:id])
+    end
+
+    # Only allow admins to change tracking info or other attributes
+    def check_logged_in
+      authenticate_or_request_with_http_basic("Widgets") do |username, password|
+        username == "admin" && password == "uncrackable"
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
