@@ -28,6 +28,8 @@ class WidgetsController < ApplicationController
 
     respond_to do |format|
       if @widget.save
+        ConfirmMailer.conf_email(@widget).deliver_now
+
         format.html { redirect_to @widget, notice: 'Widget was successfully created.' }
         format.json { render :show, status: :created, location: @widget }
       else

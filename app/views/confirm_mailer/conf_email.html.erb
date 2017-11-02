@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Widget Order Confirmed!</h1>
+    <h2>Confirmation number: <%= @widget.id %></h2>
+    <p>
+      Thank you for your order! To view the details of your order, please <%= link_to 'click here', '/widgets/#{@widget.id}' %></br>
+    </p>
+    <p>Thanks for your order! To track your order, look for 'status' on your details page. </p>
+  </body>
+</html>
