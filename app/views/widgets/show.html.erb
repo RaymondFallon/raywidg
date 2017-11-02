@@ -1,0 +1,38 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+	<h1>Congratulations!</h1>
+  <h2>Confirmation number: <%= @widget.id %>
+</p>
+<p>
+  <strong>Email:</strong>
+  <%= @widget.email %>
+</p>
+
+<p>
+  <strong>Quantity:</strong>
+  <%= @widget.quantity %>
+</p>
+
+<p>
+  <strong>Color:</strong>
+  <%= @widget.color %>
+</p>
+
+<p>
+  <strong>Due by:</strong>
+  <%= @widget.due_by %>
+</p>
+
+<p>
+  <strong>Widget Type:</strong>
+  <%= @widget.w_type %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @widget.status %>
+</p>
+
+<%= link_to 'Edit', edit_widget_path(@widget) %> |
+<%= link_to 'Back', widgets_path %>
