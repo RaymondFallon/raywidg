@@ -17,7 +17,7 @@ class WidgetsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create widget" do
     assert_difference('Widget.count') do
-      post widgets_url, params: { widget: { color: @widget.color, due_by: @widget.due_by, email: @widget.email, quantity: @widget.quantity, status: @widget.status, w_type: @widget.w_type } }
+      post widgets_url, params: { widget: { color: 'blue', due_by: @widget.due_by, email: 'test@tester.org', quantity: @widget.quantity, status: @widget.status, w_type: 'Widget Pro' } }
     end
 
     assert_redirected_to widget_url(Widget.last)
@@ -34,7 +34,7 @@ class WidgetsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update widget" do
-    patch widget_url(@widget), params: { widget: { color: @widget.color, due_by: @widget.due_by, email: @widget.email, quantity: @widget.quantity, status: @widget.status, w_type: @widget.w_type } }
+    patch widget_url(@widget), params: { widget: { color: 'blue', due_by: @widget.due_by, email: 'test@tester.org', quantity: @widget.quantity, status: @widget.status, w_type: 'Widget Pro' } }
     assert_redirected_to widget_url(@widget)
   end
 
