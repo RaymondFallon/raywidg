@@ -7,8 +7,8 @@
     <h1>Widget Order Confirmed!</h1>
     <h2>Confirmation number: <%= @widget.id %></h2>
     <p>
-      Thank you for your order! To view the details of your order, please <%= link_to 'click here', '/widgets/#{@widget.id}' %></br>
+      Thank you for your order! To view details, please <%= link_to 'click here.', @url %></br>
     </p>
-    <p>Thanks for your order! To track your order, look for 'status' on your details page. </p>
+    <p>To track your order, look for 'status' on your details page. </p>
   </body>
 </html>
