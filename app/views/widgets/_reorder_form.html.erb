@@ -11,45 +11,42 @@
     </div>
   <% end %>
 
-  </h1>Change Tracking Status:</h1>
-
-  <div class="field">
-    <%= form.label :status %>
-    <%= form.select :status, ['ordered', 'in transit', 'delivered', 'problem with delivery'], id: :widget_status %>
-  </div>
-
-  </br>
-
   <div class="field">
     <%= form.label :email %>
-    <%= form.text_field :email, id: :widget_email %>
+    <%= form.text_field :email, value: @widget.email, id: :widget_email %>
   </div>
 
   <div class="field">
     <%= form.label :quantity %>
-    <%= form.number_field :quantity, id: :widget_quantity %>
+    <%= form.number_field :quantity, value: @widget.quantity, id: :widget_quantity %>
   </div>
 
   <div class="field">
     <%= form.label :color %>
-    <%= form.select :color, ['red', 'blue', 'yellow'], id: :widget_color %>
+    <%= form.select :color, ['red', 'blue', 'yellow'], selected: @widget.color, id: :widget_color %>
   </div>
 
   </br>
 
   <div class="field">
     <%= form.label "Needed By" %>(Please allow for a least a week before delivery is made)</br>
-    <%= form.date_field :due_by, id: :widget_due_by %>
+    <%= form.date_field :due_by, min: 7.days.from_now, value: @widget.due_by, id: :widget_due_by %>
   </div>
 
   </br>
 
   <div class="field">
     <%= form.label "Widget Type" %>(Recommended: Widget Xtreme)</br>
-    <%= form.select :w_type, ['Widget', 'Widget Pro', 'Widget Xtreme'], id: :widget_w_type %>
+    <%= form.select :w_type, ['Widget', 'Widget Pro', 'Widget Xtreme'], selected: @widget.w_type, id: :widget_w_type %>
+  </div>
+
+  </br>
+
+  <div class="field">
+    <%= form.hidden_field :status, value:'ordered' %>
   </div>
 
   <div class="actions">
-    <%= form.submit "Confirm Changes" %>
+    <%= form.submit "Place *NEW* Order" %>
   </div>
 <% end %>

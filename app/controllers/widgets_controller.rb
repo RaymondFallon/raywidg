@@ -11,6 +11,7 @@ class WidgetsController < ApplicationController
   # GET /widgets/1
   # GET /widgets/1.json
   def show
+    @new_widget = Widget.new
   end
 
   # GET /widgets/new

@@ -34,5 +34,9 @@
   <%= @widget.status %>
 </p>
 
-<%= link_to 'Edit', edit_widget_path(@widget) %> |
-<%= link_to 'Back', widgets_path %>
+<%= link_to 'Edit Order', edit_widget_path(@widget) %> (admin only)
+
+</br></br></br>
+<h2>Wait...do you need MORE widgety goodness?</h2>
+<p>Please note that the above order is already placed and this will create a NEW order:</p>
+<%= render 'reorder_form', widget: @new_widget %>

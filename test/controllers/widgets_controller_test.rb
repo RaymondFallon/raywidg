@@ -17,7 +17,7 @@ class WidgetsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create widget" do
     assert_difference('Widget.count') do
-      post widgets_url, params: { widget: { color: 'blue', due_by: @widget.due_by, email: 'test@tester.org', quantity: @widget.quantity, status: @widget.status, w_type: 'Widget Pro' } }
+      post widgets_url, params: { widget: { color: 'blue', due_by: 10.days.from_now, email: 'test@tester.org', quantity: 4, status: 'ordered', w_type: 'Widget Pro' } }
     end
 
     assert_redirected_to widget_url(Widget.last)
@@ -29,18 +29,21 @@ class WidgetsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get edit" do
-    get edit_widget_url(@widget)
+    get edit_widget_url(@widget), headers: {'Authorization': ActionController::HttpAuthentication::Basic.
+  encode_credentials('admin', 'uncrackable')}
     assert_response :success
   end
 
   test "should update widget" do
-    patch widget_url(@widget), params: { widget: { color: 'blue', due_by: @widget.due_by, email: 'test@tester.org', quantity: @widget.quantity, status: @widget.status, w_type: 'Widget Pro' } }
+    patch widget_url(@widget), params: { widget: { color: 'blue', due_by: 10.days.from_now, email: 'test@tester.org', quantity: 4, status: 'in transit', w_type: 'Widget Pro' } }, headers: {'Authorization': ActionController::HttpAuthentication::Basic.
+  encode_credentials('admin', 'uncrackable')}
     assert_redirected_to widget_url(@widget)
   end
 
   test "should destroy widget" do
     assert_difference('Widget.count', -1) do
-      delete widget_url(@widget)
+      delete widget_url(@widget), headers: {'Authorization': ActionController::HttpAuthentication::Basic.
+  encode_credentials('admin', 'uncrackable')}
     end
 
     assert_redirected_to widgets_url
@@ -76,7 +79,7 @@ class WidgetsControllerTest < ActionDispatch::IntegrationTest
     assert_not widg.save, 'Ordered widget without selecting widget type'
   end
 
-=begin
+
   test "should not accept invalid color" do
     widg = Widget.new(quantity: 4, email: 'test@tester.org', color:'orange', due_by: 10.days.from_now, w_type: 'Widget', status:'ordered')
     assert_not widg.save, 'Accepted invalid color'
@@ -86,7 +89,7 @@ class WidgetsControllerTest < ActionDispatch::IntegrationTest
     widg = Widget.new(quantity: 4, email: 'test@tester.org', color:'red', due_by: 10.days.from_now, w_type: 'Widget Micro', status:'ordered')
     assert_not widg.save, 'Accepted invalid widget type'
   end
-=end
+
 
   test "should not accept negative quantity" do
     widg = Widget.new(quantity: -3, email: 'test@tester.org', color:'red', due_by: 10.days.from_now, w_type: 'Widget', status:'ordered')
@@ -103,11 +106,18 @@ class WidgetsControllerTest < ActionDispatch::IntegrationTest
     assert_not widg.save, 'Accepted non-integer quantity'
   end
 
-=begin
   test "should not accept due date before one week from now" do
-    widg = Widget.new(quantity: 4, email: 'test@tester.org', color:'red', due_by: Time.now, w_type: 'Widget', status:'ordered')
+    widg = Widget.new(quantity: 4, email: 'test@tester.org', color:'red', due_by: 4.days.from_now, w_type: 'Widget', status:'ordered')
     assert_not widg.save, 'Accepted widget order before 7-day wait time'
   end
-=end
 
+  test "should not accept invalid email address" do
+    widg = Widget.new(quantity: 4, email: '@badtest@tester.org', color:'red', due_by: 10.days.from_now, w_type: 'Widget', status:'ordered')
+    assert_not widg.save, 'Accepted invalid email address'
+  end
+
+  test "should not accept invalid email address 2" do
+    widg = Widget.new(quantity: 4, email: 'badtest_at_tester.org', color:'red', due_by: 10.days.from_now, w_type: 'Widget', status:'ordered')
+    assert_not widg.save, 'Accepted invalid email address'
+  end
 end
