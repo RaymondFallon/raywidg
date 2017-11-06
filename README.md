@@ -8,7 +8,7 @@ Ensure that you are using an up-to-date version of Ruby. (I am using Ruby 2.4.2p
 
 Unzip file or close Github repo 
 
-cd to the raywidg file
+cd to the raywidg directory
 
 Install bundler with:
 ```
@@ -44,8 +44,10 @@ To run the test suite:
 
 To make changes to the orders, admin access is required:
 
+```
 username: 'admin'
 password: 'uncrackable'
+```
 
 Login is required to change tracking details or to delete an order.
 
