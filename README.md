@@ -1,8 +1,8 @@
-# README
+# RayWidge
 
 This rails app is designed to let a user place an order of Widgets, then receive a confirmation email with a link to their order details. 
 
-#Install
+## Installing
 
 Ensure that you are using an up-to-date version of Ruby. (I am using Ruby 2.4.2p198)
 
@@ -33,7 +33,8 @@ Activate server in development mode with:
 ```
 Then navigate to localhost:3000 to use the app
 
-#Testing
+## Testing
+
 To run the test suite:
 ```
     $ rails test
