@@ -1,6 +1,6 @@
 # RayWidg
 
-This rails app is designed to let a user place an order of Widgets, then receive a confirmation email with a link to their order details. 
+This Rails app is designed to let a user place an order of Widgets, then receive a confirmation email with a link to their order details. 
 
 ## Installing
 
@@ -14,14 +14,14 @@ Install bundler with:
 ```
     $ sudo gem install bundler
 ```
-Some dependencies may need to installed outside of the bundler chain:
+Some dependencies may need to be installed outside of the bundler chain:
 ```
     $ sudo apt-get install build-essential patch ruby-dev zlib1g-dev liblzma-dev
     $ sudo apt-get install libsqlite3-dev
 ```
 Use bundle to install all the other dependencies:
 ```
-    $ bundle install
+    $ sudo bundle install
 ```
 Install NodeJS
 ```
