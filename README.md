@@ -6,7 +6,7 @@ This rails app is designed to let a user place an order of Widgets, then receive
 
 Ensure that you are using an up-to-date version of Ruby. (I am using Ruby 2.4.2p198)
 
-Unzip file or close Github repo 
+Unzip file or clone Github repo 
 
 cd to the raywidg directory
 
